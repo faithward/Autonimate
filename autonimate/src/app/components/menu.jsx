@@ -1,6 +1,21 @@
+'use client'
+import React, { useState } from "react";
+import classNames from "classnames";
+
 function Menu() {
+    const [toggleCollapse, setToggleCollapse] = useState(false)
+
+    const WrapperClass = classNames(
+        "grow shrink basis-0 self-stretch bg-neutral-900 flex-col justify-start items-start gap-2",
+        {
+            ["w-full"]: !toggleCollapse,
+            ["w-1/4"]: toggleCollapse
+        }
+    )
+
     return (
-        <div id="SideContainer" className="grow shrink basis-0 self-stretch bg-neutral-900 flex-col justify-start items-start gap-2">
+        <div id="SideContainer" className={WrapperClass}>
+            <div className={classNames("h-full", { hidden: toggleCollapse})}>
             <div id="TopSideContainer" className="self-stretch h-1/2 flex-col justify-start items-start flex">
                 <div id="LogoContainer" className="self-stretch grow shrink h-1/4 px-6 pt-2 justify-between items-center gap-2 inline-flex">
                     <img id="Logo" className="w-3/4 grow shrink" src="https://via.placeholder.com/212x71" />
@@ -138,6 +153,7 @@ function Menu() {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )
